@@ -51,7 +51,7 @@ public class YouTubeApiHelper {
         search.setQ(query);
         search.setType(Arrays.asList("video"));
         search.setMaxResults((long) maxResults);
-        search.setVideoEmbeddable(Arrays.asList("true"));
+        search.setVideoEmbeddable("true");
 
         SearchListResponse response = search.execute();
         List<SearchResult> results = response.getItems();
@@ -129,7 +129,7 @@ public class YouTubeApiHelper {
         search.setRelatedToVideoId(videoId);
         search.setType(Arrays.asList("video"));
         search.setMaxResults((long) maxResults);
-        search.setVideoEmbeddable(Arrays.asList("true"));
+        search.setVideoEmbeddable("true");
 
         SearchListResponse response = search.execute();
         List<SearchResult> results = response.getItems();
