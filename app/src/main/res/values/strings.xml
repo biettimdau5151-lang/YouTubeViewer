@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YouTube Viewer</string>
+    <string name="search_hint">Tìm kiếm video...</string>
+    <string name="no_results">Không tìm thấy kết quả</string>
+    <string name="error_occurred">Đã xảy ra lỗi</string>
+    <string name="loading">Đang tải...</string>
+    <string name="retry">Thử lại</string>
+    <string name="settings">Cài đặt</string>
+    <string name="about">Giới thiệu</string>
+    <string name="developer_key_hint">Nhập YouTube API Key</string>
+    <string name="api_key_saved">Đã lưu API Key</string>
+    <string name="background_play">Phát nền</string>
+</resources>
