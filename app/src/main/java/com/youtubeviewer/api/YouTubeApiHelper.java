@@ -9,10 +9,10 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.VideoListResponse;
-import com.google.api.services.youtube.model.VideoListResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class YouTubeApiHelper {
@@ -46,12 +46,12 @@ public class YouTubeApiHelper {
     }
 
     public List<com.youtubeviewer.model.Video> searchVideos(String query, int maxResults) throws IOException {
-        YouTube.Search.List search = youtubeService.search().list("id,snippet");
+        YouTube.Search.List search = youtubeService.search().list(Arrays.asList("id,snippet"));
         search.setKey(apiKey);
         search.setQ(query);
-        search.setType("video");
+        search.setType(Arrays.asList("video"));
         search.setMaxResults((long) maxResults);
-        search.setVideoEmbeddable("true");
+        search.setVideoEmbeddable(Arrays.asList("true"));
 
         SearchListResponse response = search.execute();
         List<SearchResult> results = response.getItems();
@@ -75,10 +75,9 @@ public class YouTubeApiHelper {
         }
 
         if (!videoIds.isEmpty()) {
-            String ids = String.join(",", videoIds);
-            YouTube.Videos.List videosList = youtubeService.videos().list("statistics,contentDetails");
+            YouTube.Videos.List videosList = youtubeService.videos().list(Arrays.asList("statistics,contentDetails"));
             videosList.setKey(apiKey);
-            videosList.setId(ids);
+            videosList.setId(videoIds);
 
             VideoListResponse videoResponse = videosList.execute();
             List<com.google.api.services.youtube.model.Video> videoDetails = videoResponse.getItems();
@@ -96,7 +95,7 @@ public class YouTubeApiHelper {
     }
 
     public List<com.youtubeviewer.model.Video> getTrendingVideos(int maxResults) throws IOException {
-        YouTube.Videos.List videos = youtubeService.videos().list("snippet,statistics,contentDetails");
+        YouTube.Videos.List videos = youtubeService.videos().list(Arrays.asList("snippet,statistics,contentDetails"));
         videos.setKey(apiKey);
         videos.setChart("mostPopular");
         videos.setRegionCode("VN");
@@ -125,12 +124,12 @@ public class YouTubeApiHelper {
     }
 
     public List<com.youtubeviewer.model.Video> getRelatedVideos(String videoId, int maxResults) throws IOException {
-        YouTube.Search.List search = youtubeService.search().list("id,snippet");
+        YouTube.Search.List search = youtubeService.search().list(Arrays.asList("id,snippet"));
         search.setKey(apiKey);
         search.setRelatedToVideoId(videoId);
-        search.setType("video");
+        search.setType(Arrays.asList("video"));
         search.setMaxResults((long) maxResults);
-        search.setVideoEmbeddable("true");
+        search.setVideoEmbeddable(Arrays.asList("true"));
 
         SearchListResponse response = search.execute();
         List<SearchResult> results = response.getItems();
